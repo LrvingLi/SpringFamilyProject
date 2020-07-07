@@ -1,0 +1,2 @@
+INSERT INTO Massages(mid,title) VALUES (10001,'DI YI TIAO XX');
+INSERT INTO Massages(mid,title) VALUES (10002,'DI ER TIAO XX');
