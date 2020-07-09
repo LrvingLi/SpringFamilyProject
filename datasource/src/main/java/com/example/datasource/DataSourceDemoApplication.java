@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.function.Consumer;
 
 @SpringBootApplication
 @Slf4j
@@ -37,7 +39,16 @@ public class DataSourceDemoApplication implements CommandLineRunner {
 	}
 
 	private void showData(){
+		// Lambda表达式
 		jdbcTemplate.queryForList("SELECT * FROM Massages")
 				.forEach(row->log.info(row.toString()));
+		// 传统方式
+		jdbcTemplate.queryForList("SELECT * FROM Massages")
+				.forEach(new Consumer<Map<String, Object>>() {
+					@Override
+					public void accept(Map<String, Object> stringObjectMap) {
+						log.info(stringObjectMap.toString());
+					}
+				});
 	}
 }
